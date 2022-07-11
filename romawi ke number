@@ -1,0 +1,84 @@
+class Solution {
+
+    /**
+     * @param String $s
+     * @return Integer
+     */
+    function romanToInt($s) {
+        $res = 0;
+        
+        //escape for number 4
+        if(substr_count($s, 'IV')) {
+            $res = $res+4;
+            $s = str_replace('IV', '', $s);  
+        }
+        if(substr_count($s, 'CM')) {
+            $res = $res+900;
+            $s = str_replace('CM', '', $s);  
+        }
+        if(substr_count($s, 'XC')) {
+            $res = $res+90;
+            $s = str_replace('XC', '', $s);  
+        }
+        if(substr_count($s, 'IX')) {
+            $res = $res+9;
+            $s = str_replace('IX', '', $s);  
+        }
+        if(substr_count($s, 'XL')) {
+            $res = $res+40;
+            $s = str_replace('XL', '', $s);  
+        }
+        if(substr_count($s, 'CD')) {
+            $res = $res+400;
+            $s = str_replace('CD', '', $s);  
+        }
+        if(substr_count($s, 'CM')) {
+            $res = $res+900;
+            $s = str_replace('CM', '', $s);  
+        }
+        if(!empty($s)){
+            $s = str_split($s);
+            $romanNumber_Array = array( 
+                'I' => 1,
+                'V' => 5,
+                'X' => 10,
+                'L' => 50,
+                'C' => 100,
+                'D' => 500,
+                'M' => 1000,                
+            ); 
+            foreach($s as $row){
+                if(!empty($romanNumber_Array[$row])){
+                    $res = $res + $romanNumber_Array[$row];
+                }
+            }
+            
+        }
+        
+        //array of roman numbers
+        return $res;
+        
+    }
+}
+
+// $halo = new Solution;
+// echo $halo->romanToInt('MCMXCIV');
+
+
+Example 1:
+
+Input: s = "III"
+Output: 3
+Explanation: III = 3.
+
+Example 2:
+
+Input: s = "LVIII"
+Output: 58
+Explanation: L = 50, V= 5, III = 3.
+
+Example 3:
+
+Input: s = "MCMXCIV"
+Output: 1994
+Explanation: M = 1000, CM = 900, XC = 90 and IV = 4.
