@@ -1,0 +1,46 @@
+<?php
+
+class Solution {
+
+    function palinDromeRecurtion($kata, $i){
+    	
+        if($i<strlen($kata)/2){
+        	$awal = $i;
+            $akhir = strlen($kata)-$i-1;
+            if(substr($kata, $awal, 1) != substr($kata, $akhir, 1)){
+                return 'salah';
+            };     
+        }else{
+        	$this->palinDromeRecurtion($kata, $i+1);	
+        }        
+        return 'betul';
+        
+    }
+
+    function palinDrome(){
+        return $this->palinDromeRecurtion('kodoks', 0);        
+    }
+    
+    /**
+     * @param Integer $x
+     * @return Boolean
+     */
+    function isPalindrome($x) {
+        for($i=0;$i<strlen($x)/2;$i++){
+            $awal = $i;
+            $akhir = strlen($x)-$i-1;
+            if(substr($x, $awal, 1) != substr($x, $akhir, 1)){
+                return 'salah';
+            };            
+        }        
+        return 'betul';
+    }
+}
+
+$halo = new Solution();
+echo $halo->palinDrome();
+echo $halo->isPalindrome('kodok');
+
+//you can use looping or recurtion
+
+?> 
